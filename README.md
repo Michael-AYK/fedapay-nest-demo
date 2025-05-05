@@ -43,7 +43,7 @@ Use live as FEDAPAY_ENV for production.
 The server will run on: http://localhost:3000
 
 
-📘 API Documentation
+## 📘 API Documentation
 
 ➕ Create a Customer
 POST /fedapay/customer
