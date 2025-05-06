@@ -13,6 +13,19 @@ export class FedapayService {
   }
 
   async createTransaction(data: any) {
-    return await Transaction.create(data);
+    try {
+      const transaction = await Transaction.create(data);
+      const token = await transaction.generateToken();
+      return {
+        success: true,
+        transaction: transaction,
+        token 
+      };
+    } catch (error) {
+      return {
+        success: false,
+        message: error.message,
+      };
+    }
   }
 }
