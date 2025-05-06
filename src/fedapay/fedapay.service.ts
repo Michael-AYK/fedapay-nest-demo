@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Customer, Transaction } from 'fedapay';
 import { configureFedaPay } from '../fedapay.config';
+import { CreateCustomerDto } from './dto/create-customer.dto';
+import { CreateTransactionDto } from './dto/create-transaction.dto';
 
 @Injectable()
 export class FedapayService {
@@ -8,11 +10,11 @@ export class FedapayService {
     configureFedaPay();
   }
 
-  async createCustomer(data: any) {
+  async createCustomer(data: CreateCustomerDto) {
     return await Customer.create(data);
   }
 
-  async createTransaction(data: any) {
+  async createTransaction(data: CreateTransactionDto) {
     try {
       const transaction = await Transaction.create(data);
       const token = await transaction.generateToken();
